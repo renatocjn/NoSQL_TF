@@ -1,0 +1,83 @@
+\section{Operações}
+A API do Amazon SimpleDB expõe uma série de operações para que a aplicação cliente crie e modifique os dados do banco. Os detalhes do uso dessa API na linguagem python serão vistos no próximo capítulo, porém alguns pontos são independentes de linguagem e serão vistos brevemente nesta seção(as descrições a seguir foram tiradas de \cite{habeeb2011}).
+
+\subsection{Domínios}
+A API provê métodos para criação, listagem e remoção de domínios de uma determinada conta do serviço.\\
+Na criação de um domínio, deve-se especificar o nome do domínio criado possuindo de 3 a 255 caracteres, sendo os caracteres válidos letras, números, \textit{underline}, hífen e ponto. Os nomes de domínios também devem ser únicos no contexto de uma mesma conta. A chamada pode retornar 3 erros:
+\\
+\begin{itemize}
+	\item \textbf{MissingParameter}: retornado quando há alguma falha na passagem do parâmetro(nome do domínio);
+	\item \textbf{InvalidParameterValue}: retornado quando o nome de domínio requisitado é inválido;
+	\item \textbf{NumberDomainsExceeded}: retornado quando o limite na quantidade de domínios já foi atingido.
+\end{itemize}
+\\
+Note que se já existir um domínio com o nome especificado, a chamada não retorna falha e também não há qualquer efeito sobre o domínio existente.\\
+Outras operações expostas pela API são a remoção de um domínio(espeficando-se o nome dele) e a listagem dos domínios existentes.\\\\
+Por fim, é possível obter metadados a respeito de um domínio. As propriedades retornadas ao se requisitar os metadados são
+\\
+\begin{itemize}
+	\item Número de itens no domínio;
+	\item Tamanho em bytes de todos os nomes de itens no domínio;
+	\item Número de nomes únicos de atributos no domínio;
+	\item Tamanho em bytes de todos os nomes(únicos) de atributos no domínio;
+	\item Número de pares atributo/valor no domínio;
+	\item Tamanho em bytes dos valores armazenados no domínio;
+	\item Momento em que os metadados foram computados, retornado como um timestamp com formato Unix time.
+\end{itemize}
+\\
+
+\subsection{Itens}
+Não existem operações que lidem diretamente com itens no Amazon SimpleDB. A criação de itens se dá indiretamente pela adição de um atributo. Ao fazer isso, especifica-se o nome do item que terá aquele atributo e, se o item não existir, ele será criado. \\
+Da mesma forma, um item é removido quando o último atributo pertencente ao item é removido.
+
+\subsection{Atributos}
+\subsubsection{Criação e atualização}
+A API permite a criação de atributos passando-se como parâmetros o nome do domínio, o nome do item ao qual o atributo pertencerá, o nome do atributo e seu valor. Para adicionar mais de um valor a um atributo, basta adicionar os valores individualmente no mesmo atributo em várias chamadas à operação.Por exemplo, se a operação se dá pela chamada a um método \textbf{putAttribute}, podemos fazer as seguintes chamadas para armazenar múltiplos valores no atributo 'genero' do item 'livro1' pertencente ao domínio 'livros':\\
+\\\\
+\textbf{putAttribute}('livros', 'livro1', 'genero', 'romance')\\
+\textbf{putAttribute}('livros', 'livro1', 'genero', 'juvenil')
+\\\\
+É possível especificar uma flag \textit{Replace} para informar que o valor passado deve substituir o valor atual do atributo ao invés de ser anexado a ele.\\
+A aplicação cliente pode adicionar semântica transacional à chamada dessa operação ao passar como parâmetro(opcional) um par atributo/valor e uma flag \textit{ExpectedExists}: caso a flag esteja ativada, a chamada à API só retornará sucesso se esse par existir no banco de dados(ou se o atributo existir, caso o valor seja omitido no par passado como parâmetro); se a flag não estiver ativada, a chamada retornará sucesso se o par \textbf{não} existir.
+
+Caso nenhum erro seja retornado, as alterações foram submetidas e, devido à consistência eventual, podem não ter seus efeitos percebidos até alguns instantes depois. Os erros que podem ser retornados são:
+\\
+\begin{itemize}
+	\item \textbf{InvalidParameterValue}: erro retornado quando o limite de 1KB é ultrapassado pelo nome do item, nome do atributo ou valor do atributo;
+	\item \textbf{MissingParameter}: análogo ao erro retornado na criação de domínios;
+	\item \textbf{NoSuchDomain}: retornado se o domínio passado não existir;
+	\item \textbf{NumberDomainBytesExceeded}: esse erro é retornado quando o limite de 10GB por domínio é excedido;
+	\item \textbf{NumberDomainAttributesExceeded}: retornado quando o limite de 1 bilhão de atributos por domínio é alcançado;
+	\item \textbf{NumberItemAttributesExceeded}: retornado quando o limite de 256 atributos por item é alcançado;
+\end{itemize}
+\\
+Um detalhe importante a respeito do funcionamento da adição de atributos é que, quando o limite de dados do domínio é alcançado, a chamada a essa operação irá falhar mesmo que ela esteja substituindo o valor de um atributo e diminua a quantidade de dados armazenados --- isto é, enquanto o domínio estiver em seu limite de dados, toda chamada de adição ou atualização de atributos irá falhar, devendo a aplicação cliente remover atributos para corrigir o problema. Por causa disso, recomenda-se que cada item tenha no máximo 255 atributos(ao invés do limite real de 256), pois assim pode-se realizar operações de atualização sem precisar remover atributos antes.
+
+\subsubsection{Consulta}
+A consulta a atributos é feita passando-se como parâmetros o nome do domínio e nome do item cujos atributos estão sendo requisitados. Caso não se queira consultar todos os atributos, pode-se passar como parâmetro opcional uma lista com os nomes dos atributos requisitados.\\
+A API permite que uma flag \textit{ConsistentRead} seja passada como argumento opcional à operação de consulta para garantir que a leitura seja consistente com as operações de inserção/atualização realizadas antes dela. Como mencionado na seção anterior, ela deve ser usada somente quando necessária, pois a garantia de leituras consistentes aumenta a latência de acesso ao banco de dados comprometendo a performance da aplicação.\\
+Caso não ocorra nenhum erro, os atributos são retornados como uma lista de pares chave-valor, sendo que atributos com múltiplos valores aparecem várias vezes nessa lista(com um valor diferente em cada par).\\
+Os erros que podem ser retornados são \textbf{NoSuchDomain} e \textbf{InvalidParameterValue}, ambos análogos aos discutidos no item anterior.\\
+Em relação aos erros, é importante salientar que requisitar os atributos de um item que não existe não se configura como uma exceção: uma lista vazia é retornada nesse cenário. Esse comportamento é permitido porque, devido à consistência eventual, é possível que itens existentes em uma réplica do seu domínio não tenham se propagado para a réplica que atende a operação de requisição de atributos naquele momento.
+
+\subsubsection{Remoção}
+Ao se remover um item, pode-se especificar se o item inteiro(com todos os seus atributos e respectivos valores) será removido, se apenas determinados atributos ou ainda(no caso de atributos com múltiplos valores) valores específicos de um atributo. \\
+A operação recebe como parâmetros obrigatórios o nome do domínio e do item. Se nenhum outro parâmetro for passado, o item será removido inteiramente do domínio. É possível passar como parâmetro opcional uma lista de pares atributo/valor especificando quais valores em quais atributos devem ser removidos. Caso se queira remover um atributo inteiro independente de seus valores, passa-se esse atributo na lista como uma entrada sem valor.\\
+Analogamente à operação de inserção e atualização de atributos, pode-se adicionar semântica transacional à operação de remoção especificando-se um par atributo/valor como parâmetro opcional.
+As possíveis exceções dessa operação são análogas às anteriores, sendo que basta um atributo ou valor inválido na lista passada como parâmetro para que a operação inteira seja considerada inválida.
+
+\subsubsection{Criação e atualização em lote}
+Quando o número de atualizações ou inserções a ser feito é muito grande(na ordem de dezenas), submeter essas operações individualmente implica um \textit{overhead} bastante sensível, já que serão feitas várias requisições ao servidor do banco de dados. Felizmente, a API do Amazon SimpleDB oferece a funcionalidade de submeter essas operações \textbf{em lote} realizando apenas uma chamada ao serviço. Os parâmetros passados são análogos à criação e atualização convencional de atributos, sendo que os nomes dos itens são passados como uma lista. Associado a cada nome de item, há uma lista de pares de atributos e valores a serem criados/atualizados. Também é possível utilizar a flag \textit{Replace} para informar que o valor passado deve substituir o valor atual do atributo, ao invés de ser anexado a ele. Essa flag é passada como uma lista contendo uma entrada para cada entrada na lista de pares atributo/valor.\\
+Assim como na versão tradicional da operação de criação/atualização, podem ser retornados os erros \textbf{InvalidParameterValue}, \textbf{NoSuchDomain}, \textbf{NumberDomainBytesExceeded}, \textbf{NumberDomainAttributesExceeded} e \textbf{NumberItemAttributesExceeded}. Além desses, também podem ser retornados os erros:
+\\
+\begin{itemize}
+	\item \textbf{DuplicateItemName}: retornado se houver dois itens com o mesmo nome em entradas diferentes da lista de itens;
+	\item \textbf{NumberSubmittedItemsExceeded}: esse erro é retornado quando se tenta passar mais de 25 itens em um lote;
+	\item \textbf{TooLargeRequest}: retornado quando a requisição ultrapassa o limite de dados de 1MB;
+\end{itemize}
+
+Salienta-se que, caso algum parâmetro cause um erro, a operação inteira é abortada e nenhuma das criações e atualizações será submetida ao banco de dados.
+
+\subsection{Seleção}
+A API do Amazon SimpleDB expõe uma operação de \textit{Select} que permite que a aplicação consulte dados do banco usando uma linguagem de consulta similar à SQL. Assim como na operaç~ao de consulta, pode-se forçar que as leituras sejam feitas de forma consistente pela passagem de uma flag na chamada à API.\\
+Os detalhes dessa linguagem de consulta serão apresentados na seção a seguir.

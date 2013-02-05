@@ -1,0 +1,41 @@
+\chapter{Exemplo de aplicação}
+Neste capítulo, descreveremos a construção de um simples aplicativo web para gerenciamento de tarefas. Mostraremos como acessar a API do Amazon SimpleDB usando a linguagem python e os resultados obtidos.\
+
+\section{Python API}
+
+\subsection{The Boto API}
+Boto é um projeto que proporciona API's simples de manuseio dos web services da amazon para a linguagem python
+
+\subsection{Pricipais Classes}
+
+\subsubsection{boto.sdb.connection}
+Proporciona a abstração da conexão com o amazon simple db com a sintaxe:\\\\
+\texttt{sdb.connection.SDBConnection(aws$\_$access$\_$key$\_$id=None, aws$\_$secret$\_$access$\_$key=None, is$\_$secure=True, port=None, proxy=None, proxy$\_$ port=None, proxy$\_$ user=None, proxy\_ pass=None, debug=0, https$\_$ connection$\_$ factory=None, region=None, path='/', converter=None, security$\_$ token=None, validate$\_$ certs=True)}
+\\\\
+Mas \'e normalmente usado na forma:\\
+\texttt{sdb.connection.SDBConnection('your$\_$access$\_$key', 'your$\_$private$\_$access$\_$key', region='sua regiao de preferencia')}
+\\
+A regi\~ao \'e uma das listadas na documenta\cc\~ao
+\\\\
+Dada uma conex\~ao voc\~e pode executar as opera\cc\~oes descritas abaixo:
+\begin{itemize}
+ \item batch$\_$delete$\_$attributes(domain$\_$or$\_$name\footnotemark[1], items\footnotemark[2])
+ \item batch$\_$put$\_$attributes(domain$\_$or$\_$name, items, replace=True)
+ \item create$\_$domain(domain$\_$name)
+ \item delete$\_$attributes(domain$\_$or$\_$name, item$\_$name, attr$\_$names=None, expected$\_$value=None)
+ \item delete$\_$domain(domain$\_$or$\_$name)
+ \item domain$\_$metadata(domain$\_$or$\_$name)
+ \item get$\_$all$\_$domains(max$\_$domains=None, next$\_$token=None)
+ \item get$\_$attributes(domain$\_$or$\_$name, item$\_$name, attribute$\_$names=None, consistent$\_$read=False, item=None)
+ \item get$\_$domain(domain$\_$name, validate=True)
+ \item put$\_$attributes(domain$\_$or$\_$name, item$\_$name, attributes\footnotemark[2], replace=True, expected$\_$value=None)
+ \item select(domain$\_$or$\_$name, query='', next$\_$token=None, consistent$\_$read=False)
+ 
+ \footnotetext[1]{'domain$\_$or$\_$name' deve ser uma string com o nome do dominio ou o proprio objeto de dominio, como descrito na proxima se\cc\~ao}
+ \footnotetext[2]{'items' e 'attributes' deve ser um objeto dict-like}
+\end{itemize}
+
+\subsubsection{boto.sdb.domain}
+Essa classe forne\cce a abstração dos dominios registrados na sua conta aws e permite a execu\cc\~ao de das mesmas instrucoes de manipula\cc\~ao de dados presentes na classe boto.sdb.connection, a cria\cc\~ao desse objeto \'e possivel com a chamada:\\
+\texttt{myconnection.get$\_$domain('mydomain')}
+\\\\

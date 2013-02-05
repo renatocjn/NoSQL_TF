@@ -1,0 +1,63 @@
+\section{Consultas}
+O Amazon SimpleDB utiliza uma linguagem de consulta parecida com o SQL tradicional. O formato básico de uma consulta é \\
+\\ \textit{SELECT \textbf{lista de atributos ou COUNT}}
+\\ \textit{FROM \textbf{domínio}} 
+\\ \left[ \textit{WHERE \textbf{expressão}} \right]
+\\ \left[ \textit{\textbf{instrução de ordenação}} \right]
+\\ \left[ \textit{LIMIT \textbf{limite}} \rights]
+
+Note que a linguagem de consulta do Amazon SimpleDB não permite o uso de expressões INSERT, UPDATE e DELETE como no SQL tradicional. Essas operações são feitas através de chamadas diretas à API do SGBD. Outra diferença --- já mencionada --- é a ausência de JOINs.
+
+\subsection{Regras gerais}
+Nomes de atributos e de domínios podem conter letras, números, crifões e \textit{underlines} e não podem ser iniciados por um número. Caso se viole essa regra, esses nomes devem vir entre aspas nas consultas. Elas também não podem, naturalmente, ser uma das palavras-chaves da sintaxe de consulta do Amazon SimpleDB. As palavras-chaves são
+\\\\
+\begin{tabular}{l c r}
+	SELECT & IN & NULL \\
+	FROM & BETWEEN & ORDER \\
+	WHERE & AND & BY \\
+	LIKE & EVERY & DESC \\
+	INTERSECTION & IS & ASC \\
+	OR & NOT & LIMIT \\
+\end{tabular}
+\\\\
+Assim como em SQL, pode-se requisitar todos os atributos em um SELECT usando-se um asterisco(*) e pode-se especificar os atributos requisitados separando-os por vírgula. A única função de agregação da linguagem de consulta do Amazon SimpleDB é a função COUNT, usada de maneira similar à SQL. 
+\\
+Os predicados da cláusula WHERE podem usar os operadores tradicionais da SQL, incluindo "IS (NOT) NULL", LIKE e BETWEEN. Além desses, há um operador IN() que permite testar se um atributo está dentro de um conjunto discreto de valores. Por exemplo: \\\\
+
+\textit{SELECT * FROM clientes WHERE nome IN('jose', 'joao', 'maria')} \\\\
+
+Os valores usados em predicados sempre são strings, logo eles devem estar entre aspas(simples ou duplas) independente do atributo correspondente possuir um valor numérico ou textual.
+
+\subsection{Cláusula de Ordenação}
+A ordem em que os itens são retornados como resultado de uma consulta sem cláusula de ordenação não é definida --- os itens não são ordenados por nenhum atributo específico e tampouco pela ordem de inserção. Para se forçar uma ordenação nos itens retornados, deve-se usar uma cláusula de ordenação na consulta através da expressão ORDER BY após a cláusula WHERE(caso ela exista) seguido do atributo sobre o qual será feita a ordenação(seguido, ainda, de uma expressão opcional ASC ou DESC que especifica se a ordenação será feita em ordem crescente ou decrescente, respectivamente. Por padrão, a ordem usada é \textbf{crescente}).\\\\
+
+Uma restrição imposta pelo Amazon SimpleDB é que o atributo sobre o qual será feita a ordenação não pode conter valores vazios. A própria sintaxe da consulta deve dar alguma garantia de que a ordenação será feita apenas em itens que não contenham valores vazios naquele atributo. Por exemplo, a consulta abaixo \\\\
+
+\textit{SELECT * FROM clientes ORDER BY nome}\\\\
+
+seria considerada inválida, pois não há garantia de que todos os itens retornados possuam algum valor no atributo 'nome'. Uma maneira simples de tornar a consulta válida e garantir que esse cenário não ocorra é acrescentar um filtro NOT NULL à consulta: \\\\
+
+\textit{SELECT * FROM clientes WHERE nome IS NOT NULL ORDER BY nome} \\\\
+
+Deve-se notar que quando há uma cláusula WHERE sobre o mesmo atributo de ordenação, a consulta será válida já que a cláusula WHERE por si filtrará os itens que possuem valor vazio no atributo.
+
+\subsection{Cláusula LIMIT}
+A cláusula LIMIT á análoga à utilizada na SQL. Caso ela não seja usada, o valor default do número de resultados retornados em uma consulta do Amazon SimpleDB é 100.\\
+Um detalhe importante a ser observado em relação ao número de itens retornados em uma consulta é que nem sempre ela irá retornar o número de itens esperados. Se o tamanho da resposta exceder 5MB ou a consulta demorar mais de 5 segundos, a chamada ao banco irá retornar os itens processados até aquele momento. Recomenda-se, então, sempre verificar se esta condição foi encontrada para que ela seja tratada adequadamente.
+
+\subsection{Atributos com múltiplos valores}
+A linguagem de consulta do Amazon SimpleDB possui mecanismos específicos para se trabalhar com atributos de múltiplos valores: o operador INTERSECTION e a função EVERY().\\
+Para ilustrar as dificuldades de se trabalhar com tais atributos usando a sintaxe especificada até esse ponto, considere o seguinte cenário: temos um domínio 'livros' com itens que possuem o atributo 'genero', que pode assumir mais de um valor dentre opções como 'romance', 'tecnico', 'biografia', etc. Digamos que se queira obter todos os itens cujo atributo 'genero' possua entre seus valores as strings 'romance' e 'juvenil'. A consulta \\\\
+
+\textit{SELECT * FROM livros WHERE genero = 'romance' AND genero = 'juvenil'} \\\\
+
+não irá retornar nenhum item, já que a condição pertence a um único predicado. A consulta procurará itens que possuam dois valores diferentes ao mesmo tempo no mesmo item, o que garantidamente não será satisfeito por nenhum item.\\
+O operador INTERSECTION é usado nesse cenário da seguinte forma: \\\\
+
+\textit{SELECT * FROM livros WHERE genero  = 'romance' INTERSECTION genero = 'juvenil'} \\\\
+
+Aqui a consulta é tratada como duas consultas de predicados diferentes, retornando por fim apenas os itens presentes nos resultados de ambas as consultas.\\\\
+
+A função EVERY() permite testar uma mesma condição para todos os valores de um atributo. Se quisermos, no cenário anterior, recuperar os itens que não possuem o valor 'tecnico' no atributo 'genero', podemos usar a função EVERY() da seguinte forma: \\\\
+
+\textit{SELECT * FROM livros WHERE EVERY(genero) != 'tecnico'}
