@@ -1,5 +1,5 @@
 \section{Operações}
-A API do Amazon SimpleDB expõe uma série de operações para que a aplicação cliente crie e modifique os dados do banco. Os detalhes do uso dessa API na linguagem python serão vistos no próximo capítulo, porém alguns pontos são independentes de linguagem e serão vistos brevemente nesta seção(as descrições a seguir foram tiradas de \cite{habeeb2011}).
+A API do Amazon SimpleDB expõe uma série de operações para que a aplicação cliente crie e modifique os dados do banco. Elas são expostas como um \textit{Web Service} acessível via requisições REST\cite{AmzSdbRef}. Nesta seção, veremos quais operações são exportadas pelo web service do Amazon SimpleDB - os detalhes do acesso à API na linguagem python serão vistos no próximo capítulo. As informações a seguir foram tiradas de \cite{habeeb2011} e \cite{AmzSdbRef}.
 
 \subsection{Domínios}
 A API provê métodos para criação, listagem e remoção de domínios de uma determinada conta do serviço.\\
@@ -10,7 +10,7 @@ Na criação de um domínio, deve-se especificar o nome do domínio criado possu
 	\item \textbf{InvalidParameterValue}: retornado quando o nome de domínio requisitado é inválido;
 	\item \textbf{NumberDomainsExceeded}: retornado quando o limite na quantidade de domínios já foi atingido.
 \end{itemize}
-\\
+
 Note que se já existir um domínio com o nome especificado, a chamada não retorna falha e também não há qualquer efeito sobre o domínio existente.\\
 Outras operações expostas pela API são a remoção de um domínio(espeficando-se o nome dele) e a listagem dos domínios existentes.\\\\
 Por fim, é possível obter metadados a respeito de um domínio. As propriedades retornadas ao se requisitar os metadados são
@@ -24,11 +24,10 @@ Por fim, é possível obter metadados a respeito de um domínio. As propriedades
 	\item Tamanho em bytes dos valores armazenados no domínio;
 	\item Momento em que os metadados foram computados, retornado como um timestamp com formato Unix time.
 \end{itemize}
-\\
 
 \subsection{Itens}
-Não existem operações que lidem diretamente com itens no Amazon SimpleDB. A criação de itens se dá indiretamente pela adição de um atributo. Ao fazer isso, especifica-se o nome do item que terá aquele atributo e, se o item não existir, ele será criado. \\
-Da mesma forma, um item é removido quando o último atributo pertencente ao item é removido.
+Não existem operações que lidem diretamente com itens na API do Amazon SimpleDB. A criação de itens se dá indiretamente pela adição de um atributo. Ao fazer isso, especifica-se o nome do item que terá aquele atributo e, se o item não existir, ele será criado. \\
+Da mesma forma, um item é removido quando o último atributo pertencente ao item é removido. Quando se deseja requisitar um item, isso é feito indiretamente através da requisição de todos os atributos daquele item.
 
 \subsection{Atributos}
 \subsubsection{Criação e atualização}
@@ -50,7 +49,7 @@ Caso nenhum erro seja retornado, as alterações foram submetidas e, devido à c
 	\item \textbf{NumberDomainAttributesExceeded}: retornado quando o limite de 1 bilhão de atributos por domínio é alcançado;
 	\item \textbf{NumberItemAttributesExceeded}: retornado quando o limite de 256 atributos por item é alcançado;
 \end{itemize}
-\\
+
 Um detalhe importante a respeito do funcionamento da adição de atributos é que, quando o limite de dados do domínio é alcançado, a chamada a essa operação irá falhar mesmo que ela esteja substituindo o valor de um atributo e diminua a quantidade de dados armazenados --- isto é, enquanto o domínio estiver em seu limite de dados, toda chamada de adição ou atualização de atributos irá falhar, devendo a aplicação cliente remover atributos para corrigir o problema. Por causa disso, recomenda-se que cada item tenha no máximo 255 atributos(ao invés do limite real de 256), pois assim pode-se realizar operações de atualização sem precisar remover atributos antes.
 
 \subsubsection{Consulta}

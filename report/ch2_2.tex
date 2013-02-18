@@ -13,7 +13,18 @@
 
 	O teorema CAP, no entanto, assevera que é impossível que um sistema distribuído apresente as três propriedades relacionadas acima ao mesmo tempo\cite{WikiCapTheo}. O Amazon SimpleDB abre mão da consistência em favor de uma \textit{consistência eventual}: ela apenas assegura que, dado tempo suficiente sem atividades de alteração no banco de dados, eventualmente todas os nós do banco estarão consistentes entre si\cite{WikiEvCons}.\\
 	A API do serviço permite que a aplicação cliente especifique diferentes graus de consistência(leituras consistentes, semântica transacional, etc) ao realizar operações sobre o banco. Tais exigências, no entanto, pioram a performance do acesso ao serviço e devem ser usadas somente quando necessárias.
-	
+
+\subsection{Modelo de dados}
+	O Amazon SimpleDB difere-se de um SGBD relacional convencional principalmente no fato de não organizar os dados em tabelas, mas sim em \textbf{domínios}. Estes, por sua vez, são compostos por \textbf{itens} com nomes únicos que agrupam um conjunto de \textbf{atributos}, cada um consistindo num par chave-valor, sendo que todo atributo possui um índice criado automaticamente pelo sistema. Deve-se ressaltar que um atributo pode ter múltiplos valores(o seu valor é um vetor)Essa organização se encontra ilustrada na figura \ref{fig:hierarquiaDados}. Os itens em um mesmo domínio não precisam ter os mesmos atributo e todos os atributos são opcionais(isto é, aceitam valores vazios).
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.5]{figuras/simpledb_hierarquia_dados.jpg}
+	\label{fig:hierarquiaDados}
+	\caption{Modelo de dados do Amazon SimpleDB}
+\end{figure}
+\\\\ Os valores são armazenados como strings independentemente do seu tipo - fica a cargo da aplicação cliente fazer as conversões e operações de \textit{marshalling} necessárias. Uma consequência desse fato é que o programador deve ter cuidado para converter os tipos de forma que operações de comparação mantenham-se consistentes. Valores numéricos devem ser completados com zeros à esquerda para evitar que, por exemplo, o número 123 seja classificado como anterior ao número 54(já que, lexicograficamente, esso é o comportamento esperado); caso se deseje trabalhar com números negativos, deve-se adicionar um offset ao número armazenado e, quando ele for requisitado, o offset deve ser subtraído para se obter o valor original; datas devem ser convertidas para formatos que preservem ordenamento lexicográfico, como o ISO 8601.
+\\\\ Uma diferença fundamental entre SGBDs relacionais e o Amazon SimpleDB é a ausência de suporte a operações de \textit{joins} neste último. Se o modelo de dados utlizados na aplicação cliente contém dados relacionados entre si, a própria aplicação deve implementar algum mecanismo para agregar entradas de dados relacionadas(ou usar um SGBD relacional ao invés de uma opção NoSQL). Note que essa abordagem pode levar a um modelo de dados \textit{não-normalizado} --- isso, porém, faz parte do tradeoff envolvido no uso de soluções NoSQL: abre-se mão da normalização de dados e restrições de consistência em favor de performance, escalabilidade e simplicidade.
+
 \subsection{Limites}
 O serviço possui as seguinte limitações\cite{WikiSimpleDb}:
 \begin{itemize}
@@ -29,13 +40,12 @@ O serviço possui as seguinte limitações\cite{WikiSimpleDb}:
 	\item máximo de 20 predicados em cada consulta.
 \end{itemize}
 
-\subsection{Modelo de dados}
-	O Amazon SimpleDB difere-se de um SGBD relacional convencional principalmente no fato de não organizar os dados em tabelas, mas sim em \textbf{domínios}. Estes, por sua vez, são compostos por \textbf{itens} com nomes únicos que agrupam um conjunto de \textbf{atributos}, cada um consistindo num par chave-valor, sendo que todo atributo possui um índice criado automaticamente pelo sistema. Deve-se ressaltar que um atributo pode ter múltiplos valores(o seu valor é um vetor). Essa organização se encontra ilustrada na figura \ref{fig:hierarquiaDados}. Os itens em um mesmo domínio não precisam ter os mesmos atributo e todos os atributos são opcionais(isto é, aceitam valores vazios).
-\begin{figure}
-	\centering
-	\includegraphics[scale=0.5]{figuras/simpledb_hierarquia_dados.jpg}
-	\label{fig:hierarquiaDados}
-	\caption{Modelo de dados do Amazon SimpleDB}
-\end{figure}
-\\\\ Os valores são armazenados como strings independentemente do seu tipo - fica a cargo da aplicação cliente fazer as conversões e operações de \textit{marshalling} necessárias. Uma consequência desse fato é que o programador deve ter cuidado para converter os tipos de forma que operações de comparação mantenham-se consistentes. Valores numéricos devem ser completados com zeros à esquerda para evitar que, por exemplo, o número 123 seja classificado como anterior ao número 54(já que, lexicograficamente, esso é o comportamento esperado); caso se deseje trabalhar com números negativos, deve-se adicionar um offset ao número armazenado e, quando ele for requisitado, o offset deve ser subtraído para se obter o valor original; datas devem ser convertidas para formatos que preservem ordenamento lexicográfico, como o ISO 8601 define.
-\\\\ Uma diferença fundamental entre SGBDs relacionais e o Amazon SimpleDB é a ausência de suporte a operações de \textit{joins} neste último. Se o modelo de dados utlizados na aplicação cliente contém dados relacionados entre si, a própria aplicação deve implementar algum mecanismo para agregar entradas de dados relacionadas (ou usar um SGBD relacional ao invés de uma opção NoSQL). Note que essa abordagem pode levar a um modelo de dados \textit{não-normalizado} --- isso, porém, faz parte do tradeoff envolvido no uso de soluções NoSQL: abre-se mão da normalização de dados e restrições de consistência em favor de performance, escalabilidade e simplicidade.
+\subsection{Modelo de pagamento}
+O Amazon SimpldeDB cobra de acordo com as seguintes métricas de uso:
+\begin{itemize}
+	\item Armazenamento: calculada a partir do tamanho bruto dos dados armazenados somados a 45 bytes de overhead para cada item, nome de atributo e par chave/valor;
+	\item Transferência de dados: medida a partir da quantidade de dados transferidos pelo serviço;
+	\item Utilização de máquina: calculada a partir de quantos recursos computacionais são gastos em cada requisição(GET, POST, etc) feita ao serviço.
+\end{itemize}
+
+A Amazon fornece um limite não cumulativo de uso livre de cobranças a cada mês. Os limites são 1GB de armazenamento, 1GB de transferência e 25 horas-máquina.

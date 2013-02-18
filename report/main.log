@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.11.13)  22 JAN 2013 18:13
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.27)  18 FEB 2013 19:37
 entering extended mode
  %&-line parsing enabled.
 **main.tex
@@ -283,8 +283,7 @@ Package ifvtex Info: VTeX not detected.
 \Gm@odd@mp=\dimen106
 \Gm@even@mp=\dimen107
 \Gm@dimlist=\toks17
-
-(/usr/share/texmf-texlive/tex/xelatex/xetexconfig/geometry.cfg))
+)
 (/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
@@ -300,7 +299,7 @@ File: graphics.cfg 2009/08/28 v1.8 graphics configuration of TeX Live
 Package graphics Info: Driver file: pdftex.def on input line 91.
 
 (/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
-File: pdftex.def 2010/03/12 v0.04p Graphics/color for pdfTeX
+File: pdftex.def 2009/08/25 v0.04m Graphics/color for pdfTeX
 \Gread@gobject=\count92
 ))
 \Gin@req@height=\dimen108
@@ -417,29 +416,54 @@ Package: atbegshi 2008/07/31 v1.9 At begin shipout hook (HO)
 File: hpdftex.def 2009/10/09 v6.79a Hyperref driver for pdfTeX
 \Fld@listcount=\count100
 )
+(/usr/share/texmf-texlive/tex/latex/listings/listings.sty
+\lst@mode=\count101
+\lst@gtempboxa=\box26
+\lst@token=\toks19
+\lst@length=\count102
+\lst@currlwidth=\dimen113
+\lst@column=\count103
+\lst@pos=\count104
+\lst@lostspace=\dimen114
+\lst@width=\dimen115
+\lst@newlines=\count105
+\lst@lineno=\count106
+\lst@maxwidth=\dimen116
+
+(/usr/share/texmf-texlive/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
+\c@lstnumber=\count107
+\lst@skipnumbers=\count108
+\lst@framebox=\box27
+)
+(/usr/share/texmf-texlive/tex/latex/listings/listings.cfg
+File: listings.cfg 2007/02/22 1.4 listings configuration
+))
+Package: listings 2007/02/22 1.4 (Carsten Heinz)
+
 
 LaTeX Warning: Unused global option(s):
     [hidelinks].
 
 (./main.aux (./front.aux) (./abstract.aux) (./ch1_1.aux) (./ch1_2.aux)
 (./ch1_3.aux) (./ch2_1.aux) (./ch2_2.aux) (./ch2_3.aux) (./ch2_4.aux)
-(./ch3_0.aux) (./ch3_1.aux) (./ch3_2.aux) (./ch4_1.aux) (./bibliografia.aux))
+(./ch3_1.aux) (./ch3_2.aux) (./ch3_3.aux) (./bibliografia.aux))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
 
 *geometry auto-detecting driver*
 *geometry detected driver: pdftex*
@@ -484,47 +508,48 @@ driver: pdftex
 -----------------------
 (/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count101
-\scratchdimen=\dimen113
-\scratchbox=\box26
-\nofMPsegments=\count102
-\nofMParguments=\count103
-\everyMPshowfont=\toks19
-\MPscratchCnt=\count104
-\MPscratchDim=\dimen114
-\MPnumerator=\count105
-\everyMPtoPDFconversion=\toks20
+\scratchcounter=\count109
+\scratchdimen=\dimen117
+\scratchbox=\box28
+\nofMPsegments=\count110
+\nofMParguments=\count111
+\everyMPshowfont=\toks20
+\MPscratchCnt=\count112
+\MPscratchDim=\dimen118
+\MPnumerator=\count113
+\everyMPtoPDFconversion=\toks21
 )
-Package hyperref Info: Link coloring OFF on input line 14.
+Package hyperref Info: Link coloring OFF on input line 16.
  (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
 
 (/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty
 Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 )
-\c@section@level=\count106
+\c@section@level=\count114
 )
-LaTeX Info: Redefining \ref on input line 14.
-LaTeX Info: Redefining \pageref on input line 14.
+LaTeX Info: Redefining \ref on input line 16.
+LaTeX Info: Redefining \pageref on input line 16.
  (./main.out)
 (./main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
 
-\AtBeginShipoutBox=\box27
+\AtBeginShipoutBox=\box29
+\c@lstlisting=\count115
 \openout2 = `front.aux'.
 
  (./front.tex
-<figuras/ufc_brasao.jpg, id=127, 160.6pt x 204.765pt>
+<figuras/ufc_brasao.jpg, id=143, 160.6pt x 204.765pt>
 File: figuras/ufc_brasao.jpg Graphic file (type jpg)
 
 <use figuras/ufc_brasao.jpg>)
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 15.
+(Font)              <12> on input line 17.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 15.
+(Font)              <8> on input line 17.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 15.
+(Font)              <6> on input line 17.
  [1
 
 
@@ -572,7 +597,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.18 	\include{ch1_1}
+l.20 	\include{ch1_1}
                       [1
 
 
@@ -619,36 +644,36 @@ Underfull \hbox (badness 10000) in paragraph at lines 6--10
 
  []
 
-<figuras/relacional1.jpg, id=182, 225.84375pt x 346.29375pt>
+<figuras/relacional1.jpg, id=202, 225.84375pt x 346.29375pt>
 File: figuras/relacional1.jpg Graphic file (type jpg)
 
 <use figuras/relacional1.jpg>)
-Underfull \hbox (badness 10000) in paragraph at lines 12--18
+Underfull \hbox (badness 10000) in paragraph at lines 12--20
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 12--18
+Underfull \hbox (badness 10000) in paragraph at lines 12--20
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 12--18
+Underfull \hbox (badness 10000) in paragraph at lines 12--20
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 12--18
+Underfull \hbox (badness 10000) in paragraph at lines 12--20
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 12--18
+Underfull \hbox (badness 10000) in paragraph at lines 12--20
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 12--18
+Underfull \hbox (badness 10000) in paragraph at lines 12--20
 
  []
 
@@ -659,11 +684,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 12--18
 \openout2 = `ch1_2.aux'.
 
  (./ch1_2.tex
-<figuras/vert_scaling.jpg, id=195, 636.3775pt x 374.39874pt>
+<figuras/vert_scaling.jpg, id=215, 636.3775pt x 374.39874pt>
 File: figuras/vert_scaling.jpg Graphic file (type jpg)
 
 <use figuras/vert_scaling.jpg>
-<figuras/horz_scaling.jpg, id=196, 625.33624pt x 393.47pt>
+<figuras/horz_scaling.jpg, id=216, 625.33624pt x 393.47pt>
 File: figuras/horz_scaling.jpg Graphic file (type jpg)
 
 <use figuras/horz_scaling.jpg>
@@ -744,11 +769,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 28--29
 
  []
 
-<figuras/Cloud_computing_layers.png, id=223, 349.305pt x 323.2075pt>
+<figuras/Cloud_computing_layers.png, id=243, 349.305pt x 323.2075pt>
 File: figuras/Cloud_computing_layers.png Graphic file (type png)
 
 <use figuras/Cloud_computing_layers.png>)
-Overfull \hbox (0.14136pt too wide) in paragraph at lines 37--20
+Overfull \hbox (0.14136pt too wide) in paragraph at lines 37--22
 \OT1/cmr/bx/n/10 mazena-mento como Servi^^Xco\OT1/cmr/m/n/10 (\OT1/cmr/m/it/10 
 STaaS\OT1/cmr/m/n/10 ), \OT1/cmr/bx/n/10 Da-dos como Servi^^Xco\OT1/cmr/m/n/10 
 (\OT1/cmr/m/it/10 DaaS\OT1/cmr/m/n/10 ), \OT1/cmr/bx/n/10 Vir-tu-al-iza^^Xc~ao 
@@ -773,23 +798,23 @@ Overfull \hbox (0.10585pt too wide) in paragraph at lines 14--16
 i-fique difer-entes graus de con-sist^encia(leituras
  []
 
-<figuras/simpledb_hierarquia_dados.jpg, id=238, 539.01375pt x 351.3125pt>
+<figuras/simpledb_hierarquia_dados.jpg, id=257, 539.01375pt x 351.3125pt>
 File: figuras/simpledb_hierarquia_dados.jpg Graphic file (type jpg)
 
-<use figuras/simpledb_hierarquia_dados.jpg>)
-Underfull \hbox (badness 10000) in paragraph at lines 33--23
+<use figuras/simpledb_hierarquia_dados.jpg>
+Underfull \hbox (badness 10000) in paragraph at lines 18--27
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 33--23
+Underfull \hbox (badness 10000) in paragraph at lines 18--27
 
  []
 
 [9
 
 
-] [10 <./figuras/simpledb_hierarquia_dados.jpg>]
+ <./figuras/simpledb_hierarquia_dados.jpg>]) [10]
 \openout2 = `ch2_3.aux'.
 
  (./ch2_3.tex
@@ -798,54 +823,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 5--8
  []
 
 
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.14 N
-      ote que se já existir um domínio com o nome especificado, a chamada ...
-
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 14--18
 
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 14--18
-
- []
-
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.28 
-     
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 35--42
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 35--42
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 35--42
 
  []
 
@@ -853,26 +836,27 @@ Underfull \hbox (badness 10000) in paragraph at lines 35--42
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 43--45
+Underfull \hbox (badness 10000) in paragraph at lines 34--41
 
  []
 
 
-! LaTeX Error: There's no line here to end.
+Underfull \hbox (badness 10000) in paragraph at lines 34--41
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.54 U
-      m detalhe importante a respeito do funcionamento da adição de atribu...
+ []
 
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
+
+Underfull \hbox (badness 10000) in paragraph at lines 34--41
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 42--44
+
+ []
 
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 70--73
+Underfull \hbox (badness 10000) in paragraph at lines 69--72
 
  []
 
@@ -1065,64 +1049,23 @@ Underfull \hbox (badness 10000) in paragraph at lines 61--62
  []
 
 ) [17]
-\openout2 = `ch3_0.aux'.
+\openout2 = `ch3_1.aux'.
 
- (./ch3_0.tex
+ (./ch3_1.tex
 Cap\'{\i }tulo 3.
-! Undefined control sequence.
-l.18 ...i\~ao \'e uma das listadas na documenta\cc
-                                                  \~ao
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+<figuras/acesso_credenciais.jpg, id=312, 1059.96pt x 634.37pt>
+File: figuras/acesso_credenciais.jpg Graphic file (type jpg)
 
-! Undefined control sequence.
-l.20 ...conex\~ao voc\~e pode executar as opera\cc
-                                                  \~oes descritas abaixo:
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+<use figuras/acesso_credenciais.jpg>
+<figuras/credenciais1.jpg, id=313, 761.84625pt x 384.43625pt>
+File: figuras/credenciais1.jpg Graphic file (type jpg)
 
+<use figuras/credenciais1.jpg>
+<figuras/credenciais2.jpg, id=314, 752.8125pt x 385.44pt>
+File: figuras/credenciais2.jpg Graphic file (type jpg)
 
-Underfull \hbox (badness 10000) in paragraph at lines 12--21
-
- []
-
-
-Overfull \hbox (67.31303pt too wide) in paragraph at lines 12--21
-\OT1/cmtt/m/n/10 sdb.connection.SDBConnection(aws$[]$access$[]$key$[]$id=None, 
-aws$[]$secret$[]$access$[]$key=None, is$[]$secure=True,
- []
-
-
-Overfull \hbox (15.44354pt too wide) in paragraph at lines 12--21
-\OT1/cmtt/m/n/10 port=None, proxy=None, proxy$[]$ port=None, proxy$[]$ user=Non
-e, proxy[] pass=None, debug=0,
- []
-
-
-Overfull \hbox (57.44318pt too wide) in paragraph at lines 12--21
-\OT1/cmtt/m/n/10 https$[]$ connection$[]$ factory=None, region=None, path='/', 
-converter=None, security$[]$ token=None,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 12--21
-
- []
-
-
-Overfull \hbox (17.7535pt too wide) in paragraph at lines 12--21
-\OT1/cmtt/m/n/10 sdb.connection.SDBConnection('your$[]$access$[]$key', 'your$[]
-$private$[]$access$[]$key', region='sua
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 12--21
+<use figuras/credenciais2.jpg>)
+Underfull \hbox (badness 10000) in paragraph at lines 5--29
 
  []
 
@@ -1130,91 +1073,46 @@ Underfull \hbox (badness 10000) in paragraph at lines 12--21
 
 
 
-]
-Overfull \hbox (7.51114pt too wide) in paragraph at lines 31--32
-[]\OT1/cmr/m/n/10 put$[]$attributes(domain$[]$or$[]$name, item$[]$name, at-trib
-utes[], re-place=True, expected$[]$value=None) 
- []
-
-! Undefined control sequence.
-<argument> ...nio, como descrito na proxima se\cc 
-                                                  \~ao\@finalstrut \strutbox 
-l.34 ...minio, como descrito na proxima se\cc\~ao}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.39 Essa classe forne\cce
-                           a abstração dos dominios registrados na sua con...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.39 ...ados na sua conta aws e permite a execu\cc
-                                                  \~ao de das mesmas instruc...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.39 ...ao de das mesmas instrucoes de manipula\cc
-                                                  \~ao de dados presentes na...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.39 ...s na classe boto.sdb.connection, a cria\cc
-                                                  \~ao desse objeto \'e poss...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-)
-Underfull \hbox (badness 10000) in paragraph at lines 39--27
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 39--27
-
- []
-
-[19]
-\openout2 = `ch3_1.aux'.
-
- (./ch3_1.tex) [20
-
-
-] [21]
+] [19 <./figuras/acesso_credenciais.jpg> <./figuras/credenciais1.jpg> <./figura
+s/credenciais2.jpg>]
 \openout2 = `ch3_2.aux'.
 
- (./ch3_2.tex) [22
+ (./ch3_2.tex
+(/usr/share/texmf-texlive/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2004/09/05 1.3 listings language file
+)
+Overfull \hbox (17.61195pt too wide) in paragraph at lines 16--17
+[][][][][][][][][][][][][][][][][][][] 
+ []
 
 
-]
-\openout2 = `ch4_1.aux'.
+Overfull \hbox (35.61214pt too wide) in paragraph at lines 45--46
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
 
- (./ch4_1.tex
-Cap\'{\i }tulo 4.
-) [23
-
+[20
 
 
-]
+]) [21]
+\openout2 = `ch3_3.aux'.
+
+ (./ch3_3.tex
+<figuras/task_manager_login_screen.png, id=361, 1284.8pt x 727.71875pt>
+File: figuras/task_manager_login_screen.png Graphic file (type png)
+
+<use figuras/task_manager_login_screen.png>
+<figuras/task_manager_tasks_screen.png, id=362, 1284.8pt x 727.71875pt>
+File: figuras/task_manager_tasks_screen.png Graphic file (type png)
+
+<use figuras/task_manager_tasks_screen.png>
+<figuras/taskdomain.jpg, id=363, 635.37375pt x 387.4475pt>
+File: figuras/taskdomain.jpg Graphic file (type jpg)
+
+<use figuras/taskdomain.jpg>) [22
+
+
+ <./figuras/task_manager_login_screen.png (PNG copy)>] [23 <./figuras/task_mana
+ger_tasks_screen.png (PNG copy)> <./figuras/taskdomain.jpg>]
 \openout2 = `bibliografia.aux'.
 
  (./bibliografia.tex
@@ -1230,7 +1128,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 45--47
  []
 
 
-Underfull \hbox (badness 2310) in paragraph at lines 57--59
+Underfull \hbox (badness 2310) in paragraph at lines 61--63
 []\OT1/cmr/m/n/10 Verbete da Wikipedia so-bre Con-sist^encia Even-tual []$\OT1/
 cmtt/m/n/10 http : / / en . wikipedia . org / wiki /
  []
@@ -1241,34 +1139,31 @@ cmtt/m/n/10 http : / / en . wikipedia . org / wiki /
 
 ] (./main.aux (./front.aux) (./abstract.aux) (./ch1_1.aux) (./ch1_2.aux)
 (./ch1_3.aux) (./ch2_1.aux) (./ch2_2.aux) (./ch2_3.aux) (./ch2_4.aux)
-(./ch3_0.aux) (./ch3_1.aux) (./ch3_2.aux) (./ch4_1.aux) (./bibliografia.aux))
+(./ch3_1.aux) (./ch3_2.aux) (./ch3_3.aux) (./bibliografia.aux))
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 5501 strings out of 495061
- 77336 string characters out of 1182620
- 249254 words of memory out of 3000000
- 8415 multiletter control sequences out of 15000+50000
+ 7252 strings out of 495061
+ 100814 string characters out of 1182621
+ 295643 words of memory out of 3000000
+ 10118 multiletter control sequences out of 15000+50000
  10149 words of font info for 36 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 38i,7n,38p,996b,440s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,8n,44p,996b,1085s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/sha
 re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-te
 xlive/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-texlive/fon
 ts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/pub
 lic/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
-/cm/cmr17.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr6.pfb
-></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/
-texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-texlive
-/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type
-1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public/am
-sfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
-mtt12.pfb>
-Output written on main.pdf (26 pages, 442377 bytes).
+/cm/cmr17.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.p
+fb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/sh
+are/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-t
+exlive/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on main.pdf (26 pages, 1122666 bytes).
 PDF statistics:
- 405 PDF objects out of 1000 (max. 8388607)
- 83 named destinations out of 1000 (max. 500000)
- 279 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 464 PDF objects out of 1000 (max. 8388607)
+ 119 named destinations out of 1000 (max. 500000)
+ 341 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,2 +1,73 @@
-\section{Construção}
-\lipsum[1-6]
+\section{API Python}
+A API do SimpleDB pode ser acessada na linguagem python usando-se a biblioteca \textit{boto}.
+\subsection{Instalando e importando o módulo}
+A biblioteca \textit{boto} está disponível para instalação via \textit{pip}(Python Package Index) e pode ser instalada com o comando
+\\
+\textit{pip install boto}
+\\
+No código, o módulo é é importado com a instrução
+\begin{lstlisting}[language=Python]
+import boto
+\end{lstlisting}
+
+\subsection{Criando a conexão}
+A conexão ao serviço do SimpleDB é feita através do método \textbf{connect{\_}sdb} passando-se as chaves de acesso da sua conta da Amazon:
+\begin{lstlisting}[language=Python]
+conn = boto.connect_sdb('ID_DE_CHAVE_DE_ACESSO','CHAVE_DE_ACESSO_SECRETA')
+\end{lstlisting}
+
+Ele retorna um objeto \textbf{SDBConnection} que é usado para a obtenção de domínios do banco.
+
+\subsection{Domínios}
+Domínios são criados através do método \textbf{create{\textunderscore}domain}:
+\begin{lstlisting}[language=Python]
+conn.create_domain('nome_do_dominio')
+\end{lstlisting}
+
+Um domínio existente pode ser obtido pelo método \textbf{get{\textunderscore}domain}, que retorna um objeto \textbf{Domain} através do qual as requisições ao banco de dados serão feitas:
+\begin{lstlisting}[language=Python]
+dom = conn.get_domain('nome_do_dominio')
+\end{lstlisting}
+
+Por fim, um domínio pode ser removido utilizando-se o método \textbf{delete{\textunderscore}domain}:
+\begin{lstlisting}[language=Python]
+conn.delete_domain('nome_do_dominio')
+\end{lstlisting}
+
+\subsection{Itens e atributos}
+A adição de itens pode ser feita individualmente ou em lote. No primeiro caso, usa-se o método \textbf{put{\textunderscore}attributes}:
+\begin{lstlisting}[language=Python]
+dom.put_attributes('nome do item', {'attr1': 'val1', 'attr2': 'val2'})
+\end{lstlisting}
+
+Para a a adição em lote, existe o método \textbf{batch{\textunderscore}put{\textunderscore}attributes}:
+\begin{lstlisting}[language=Python]
+dom.batch_put_attributes({'item1':{'attr1':'val1'},'item2':{'attr2':'val2'}})
+\end{lstlisting}
+
+Itens podem ser obtidos através de chamadas ao método \textbf{get{\textunderscore}item}:
+\begin{lstlisting}[language=Python]
+item = dom.get_item('nome do item')
+\end{lstlisting}
+
+ou usando o método \textbf{select} com uma consulta, conforme mencionado no capítulo 2:
+\begin{lstlisting}[language=Python]
+rs = dom.select('select * from `dominio where attr1="val1"')
+\end{lstlisting}
+
+Ele retorna um \textbf{ResultSet} iterável contendo os itens que satisfazem a consulta.
+
+Uma vez obtido um item, seus atributos podem ser acessados e alterados indexando o seu nome:
+\begin{lstlisting}[language=Python]
+item = dom.get_item('nome do item')
+item['attr1'] = 'novo valor'
+item.save()
+\end{lstlisting}
+
+Um item pode ser removido com o método \textbf{delete{\textunderscore}item} passando-se o nome do item ou um objeto retornado por um dos métodos de recuperação de itens acima:
+item = dom.get{\textunderscore}item('item1')
+\begin{lstlisting}[language=Python]
+item = dom.get_item('nome do item')
+dom.delete_item(item)
+dom.delete_item('outro item')
+\end{lstlisting}

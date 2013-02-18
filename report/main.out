@@ -10,8 +10,9 @@
 \BOOKMARK [0][-]{chapter.2}{Amazon SimpleDB}{}
 \BOOKMARK [1][-]{section.2.1}{Introdu\347\343o}{chapter.2}
 \BOOKMARK [1][-]{section.2.2}{Caracter\355sticas}{chapter.2}
-\BOOKMARK [2][-]{subsection.2.2.1}{Limites}{section.2.2}
-\BOOKMARK [2][-]{subsection.2.2.2}{Modelo de dados}{section.2.2}
+\BOOKMARK [2][-]{subsection.2.2.1}{Modelo de dados}{section.2.2}
+\BOOKMARK [2][-]{subsection.2.2.2}{Limites}{section.2.2}
+\BOOKMARK [2][-]{subsection.2.2.3}{Modelo de pagamento}{section.2.2}
 \BOOKMARK [1][-]{section.2.3}{Opera\347\365es}{chapter.2}
 \BOOKMARK [2][-]{subsection.2.3.1}{Dom\355nios}{section.2.3}
 \BOOKMARK [2][-]{subsection.2.3.2}{Itens}{section.2.3}
@@ -23,9 +24,12 @@
 \BOOKMARK [2][-]{subsection.2.4.3}{Cl\341usula LIMIT}{section.2.4}
 \BOOKMARK [2][-]{subsection.2.4.4}{Atributos com m\372ltiplos valores}{section.2.4}
 \BOOKMARK [0][-]{chapter.3}{Exemplo de aplica\347\343o}{}
-\BOOKMARK [1][-]{section.3.1}{Python API}{chapter.3}
-\BOOKMARK [2][-]{subsection.3.1.1}{The Boto API}{section.3.1}
-\BOOKMARK [2][-]{subsection.3.1.2}{Pricipais Classes}{section.3.1}
-\BOOKMARK [1][-]{section.3.2}{Descri\347\343o}{chapter.3}
-\BOOKMARK [1][-]{section.3.3}{Constru\347\343o}{chapter.3}
-\BOOKMARK [0][-]{chapter.4}{Conclus\343o}{}
+\BOOKMARK [1][-]{section.3.1}{Obten\347\343o das chaves de acesso}{chapter.3}
+\BOOKMARK [1][-]{section.3.2}{API Python}{chapter.3}
+\BOOKMARK [2][-]{subsection.3.2.1}{Instalando e importando o m\363dulo}{section.3.2}
+\BOOKMARK [2][-]{subsection.3.2.2}{Criando a conex\343o}{section.3.2}
+\BOOKMARK [2][-]{subsection.3.2.3}{Dom\355nios}{section.3.2}
+\BOOKMARK [2][-]{subsection.3.2.4}{Itens e atributos}{section.3.2}
+\BOOKMARK [1][-]{section.3.3}{Descri\347\343o}{chapter.3}
+\BOOKMARK [2][-]{subsection.3.3.1}{Organiza\347\343o dos dados}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.2}{Organiza\347\343o do c\363digo}{section.3.3}
